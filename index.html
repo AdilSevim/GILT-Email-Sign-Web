@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="tr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="GİLT kulüp ve üye e-posta imzalarını oluşturun, önizleyin ve kopyalayın.">
+  <title>İmza Stüdyosu · GİLT</title>
+  <link rel="icon" href="assets/gilt-mark.png">
+  <link rel="stylesheet" href="style.css">
+  <script src="app.js" defer></script>
+</head>
+<body>
+  <header class="topbar">
+    <div class="shell topbar-inner">
+      <a class="brand" href="./"><img src="assets/gilt-mark.png" alt="" width="34" height="34"><strong>GİLT</strong><span>İmza Stüdyosu</span></a>
+      <a class="guide-link" href="kilavuz.html">Kurulum kılavuzu <span aria-hidden="true">↗</span></a>
+    </div>
+  </header>
+  <main class="shell">
+    <section class="intro" aria-labelledby="title">
+      <h1 id="title">E-posta imzanı oluştur<span>.</span></h1>
+      <p>Kulüp adına veya kendi adına gönderdiğin e-postalar için GİLT imzanı hazırla.</p>
+    </section>
+    <div class="workspace">
+      <section class="panel editor" aria-labelledby="editor-title">
+        <h2 id="editor-title">İmza bilgileri</h2>
+        <form id="signature-form">
+          <fieldset class="switch">
+            <legend class="sr-only">İmza türü</legend>
+            <label><input type="radio" name="type" value="member" checked><span>Bireysel imza</span></label>
+            <label><input type="radio" name="type" value="club"><span>Kulüp imzası</span></label>
+          </fieldset>
+          <div class="fields">
+            <fieldset id="member-fields" class="fields">
+              <legend class="sr-only">Üye bilgileri</legend>
+              <label>Ad soyad <input name="fullName" required maxlength="80" autocomplete="name" placeholder="Örn. Deniz Yılmaz"></label>
+              <label>Kulüpteki görev <input name="role" required maxlength="100" placeholder="Örn. Sponsorluk İlişkileri Ekip Lideri"></label>
+            </fieldset>
+            <label id="club-fields" hidden>Birim <span class="optional">İsteğe bağlı</span><input name="team" maxlength="100" placeholder="Örn. Sponsorluk İlişkileri" disabled></label>
+            <fieldset id="contact-fields" class="fields">
+              <legend class="sr-only">Bireysel iletişim bilgileri</legend>
+              <label>E-posta <span class="optional">İsteğe bağlı</span><input type="email" name="memberEmail" maxlength="120" autocomplete="email" placeholder="ad@ornek.com"></label>
+              <label>Telefon <span class="optional">İsteğe bağlı</span><input type="tel" name="memberPhone" maxlength="26" pattern="\+?[0-9\s\(\).\-]{7,25}" title="Alan koduyla birlikte telefon numarası girin." autocomplete="tel" placeholder="+90 5XX XXX XX XX"></label>
+            </fieldset>
+            <fieldset id="club-contact-fields" class="fields" hidden disabled>
+              <legend class="sr-only">Kulüp iletişim bilgileri</legend>
+              <label>Kulüp e-postası <span class="optional">İsteğe bağlı</span><input type="email" name="clubEmail" maxlength="120" placeholder="kulup@ornek.com"></label>
+              <label>Kulüp telefonu <span class="optional">İsteğe bağlı</span><input type="tel" name="clubPhone" maxlength="26" pattern="\+?[0-9\s\(\).\-]{7,25}" title="Alan koduyla birlikte telefon numarası girin." placeholder="+90 5XX XXX XX XX"></label>
+            </fieldset>
+          </div>
+        </form>
+        <p class="privacy">Girdiğin bilgiler yalnızca bu tarayıcı oturumunda işlenir.</p>
+      </section>
+      <section class="panel result" aria-labelledby="preview-title">
+        <header class="preview-header"><h2 id="preview-title">Önizleme</h2><span class="live"><i></i> Canlı</span></header>
+        <div class="canvas"><div class="mail">
+          <div class="mail-header"><span></span><span></span><span></span><strong>E-posta görünümü</strong></div>
+          <div id="preview" aria-label="E-posta imzası önizlemesi"></div>
+        </div></div>
+        <div class="actions">
+          <button class="primary" id="copy" type="button">İmzayı kopyala</button>
+          <button class="secondary" id="download" type="button">HTML indir</button>
+        </div>
+        <p id="status" role="status">İmzanı kopyalayıp e-posta ayarlarındaki imza alanına yapıştır.</p>
+      </section>
+    </div>
+    <noscript>İmza oluşturmak için tarayıcında JavaScript’i etkinleştir.</noscript>
+  </main>
+  <footer class="shell footer"><span>Girişimci İnovatif Liderler Takımı · Kadir Has Üniversitesi</span><a href="https://www.instagram.com/khasgilt/">@khasgilt</a></footer>
+</body>
+</html>
