@@ -7,7 +7,7 @@ const instructions = status.textContent;
 const fields = form.elements;
 const teamName = "Girişimci İnovatif Liderler Takımı";
 const university = "Kadir Has Üniversitesi";
-const signatureLogo = "https://adilsevim.github.io/GILT-Email-Sign-Web/assets/gilt-mark.png";
+const signatureLogo = "https://adilsevim.github.io/GILT-Email-Sign-Web/assets/gilt-puzzle.png";
 const socialLinks = [
   ["LinkedIn", "https://tr.linkedin.com/company/khasgilt"],
   ["Instagram", "https://www.instagram.com/khasgilt/"],
@@ -28,6 +28,7 @@ function signatureData() {
 
   return {
     isClub,
+    showLogo: fields.showLogo.checked,
     name: name || "Ad Soyad",
     role: role || (isClub ? "" : "Kulüpteki görevin"),
     email: emailField.validity.valid ? emailField.value.trim() : "",
@@ -35,7 +36,7 @@ function signatureData() {
   };
 }
 
-function renderSignature({ isClub, name, role, email, phone }) {
+function renderSignature({ isClub, showLogo, name, role, email, phone }) {
   const colors = ["#2167b1", "#18a77b", "#e74a88", "#f49c30"];
   const strip = colors.map((color) =>
     `<td width="12" height="4" bgcolor="${color}" style="width:12px;height:4px;background-color:${color};font-size:0;line-height:4px;mso-line-height-rule:exactly;">&nbsp;</td>`
@@ -52,8 +53,8 @@ function renderSignature({ isClub, name, role, email, phone }) {
   return `<table role="presentation" cellpadding="0" cellspacing="0" border="0" style="border-collapse:collapse;font-family:Arial,Helvetica,sans-serif;font-size:12px;line-height:17px;color:#172a44;">
   <tr>
     <td valign="top" style="vertical-align:top;padding:2px 12px 0 0;border-right:1px solid #cbd8e7;">
-      <img src="${signatureLogo}" width="42" height="42" alt="" style="display:block;width:42px;height:42px;border:0;margin:0 auto 4px;">
-      <div style="font-size:21px;line-height:25px;font-weight:bold;letter-spacing:-.5px;text-align:center;white-space:nowrap;">GİLT</div>
+      ${showLogo ? `<img src="${signatureLogo}" width="42" height="42" alt="" style="display:block;width:42px;height:42px;border:0;margin:0 auto 4px;">` : ""}
+      <div style="font-size:28px;line-height:31px;font-weight:bold;letter-spacing:-1px;white-space:nowrap;">GİLT</div>
       <table role="presentation" cellpadding="0" cellspacing="0" border="0" style="border-collapse:collapse;margin-top:5px;"><tr>${strip}</tr></table>
     </td>
     <td valign="top" style="vertical-align:top;padding:0 0 0 12px;overflow-wrap:anywhere;">
@@ -150,6 +151,7 @@ form.addEventListener("input", (event) => {
   event.target.setCustomValidity?.("");
   refreshPreview();
 });
+fields.showLogo.addEventListener("input", refreshPreview);
 document.querySelector("#copy").addEventListener("click", copySignature);
 document.querySelector("#download").addEventListener("click", downloadSignature);
 refreshPreview();
