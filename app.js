@@ -78,9 +78,9 @@ function renderSignature({ isClub, language, labels, logoStyle, name, role, emai
   <tr>
     <td valign="middle" style="vertical-align:middle;padding:0 12px 0 0;border-right:1px solid #cbd8e7;">
       ${logoStyle === "wordmark"
-        ? `<img src="${assetBase}gilt-wordmark.png" width="72" height="60" alt="GİLT" style="display:block;width:72px;height:60px;border:0;">`
+        ? `<img src="${assetBase}gilt-color-wordmark.png" width="72" height="61" alt="GİLT" style="display:block;width:72px;height:61px;border:0;">`
         : `${logoStyle === "puzzle" ? `<img src="${assetBase}gilt-puzzle.png" width="42" height="42" alt="" style="display:block;width:42px;height:42px;border:0;margin:0 auto 4px;">` : ""}
-      <div style="font-size:28px;line-height:31px;font-weight:bold;letter-spacing:-1px;white-space:nowrap;">GİLT</div>
+      <img src="${assetBase}gilt-black-wordmark.png" width="57" height="28" alt="GİLT" style="display:block;width:57px;height:28px;border:0;font-size:16px;font-weight:bold;">
       <table role="presentation" cellpadding="0" cellspacing="0" border="0" style="border-collapse:collapse;margin-top:5px;"><tr>${strip}</tr></table>`}
     </td>
     <td valign="top" style="vertical-align:top;padding:0 0 0 12px;overflow-wrap:anywhere;">
