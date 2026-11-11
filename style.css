@@ -85,22 +85,9 @@ fieldset { border: 0; margin: 0; padding: 0; min-width: 0; }
   .guide .panel { box-shadow: none; break-inside: avoid; }
 }
 
-.logo-option {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  width: fit-content;
-  min-height: 32px;
-  margin-top: 12px;
-  color: var(--ink);
-  font-size: 13px;
-  font-weight: 600;
-  cursor: pointer;
+.switch.logo-options {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  margin: 14px 0 0;
 }
-.logo-option input {
-  width: 16px;
-  height: 16px;
-  margin: 0;
-  accent-color: var(--blue);
-}
-.logo-option + .canvas { margin-top: 12px; }
+.logo-options + .canvas { margin-top: 12px; }
+#status:empty { margin: 0; }
