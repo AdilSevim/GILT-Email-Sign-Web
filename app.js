@@ -7,6 +7,7 @@ const instructions = status.textContent;
 const fields = form.elements;
 const teamName = "Girişimci İnovatif Liderler Takımı";
 const university = "Kadir Has Üniversitesi";
+const signatureLogo = "https://adilsevim.github.io/GILT-Email-Sign-Web/assets/gilt-mark.png";
 const socialLinks = [
   ["LinkedIn", "https://tr.linkedin.com/company/khasgilt"],
   ["Instagram", "https://www.instagram.com/khasgilt/"],
@@ -51,7 +52,8 @@ function renderSignature({ isClub, name, role, email, phone }) {
   return `<table role="presentation" cellpadding="0" cellspacing="0" border="0" style="border-collapse:collapse;font-family:Arial,Helvetica,sans-serif;font-size:12px;line-height:17px;color:#172a44;">
   <tr>
     <td valign="top" style="vertical-align:top;padding:2px 12px 0 0;border-right:1px solid #cbd8e7;">
-      <div style="font-size:28px;line-height:31px;font-weight:bold;letter-spacing:-1px;white-space:nowrap;">GİLT</div>
+      <img src="${signatureLogo}" width="42" height="42" alt="" style="display:block;width:42px;height:42px;border:0;margin:0 auto 4px;">
+      <div style="font-size:21px;line-height:25px;font-weight:bold;letter-spacing:-.5px;text-align:center;white-space:nowrap;">GİLT</div>
       <table role="presentation" cellpadding="0" cellspacing="0" border="0" style="border-collapse:collapse;margin-top:5px;"><tr>${strip}</tr></table>
     </td>
     <td valign="top" style="vertical-align:top;padding:0 0 0 12px;overflow-wrap:anywhere;">
