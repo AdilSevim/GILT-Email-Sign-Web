@@ -37,8 +37,8 @@ function signatureData() {
 function renderSignature({ isClub, name, role, email, phone }) {
   const colors = ["#2167b1", "#18a77b", "#e74a88", "#f49c30"];
   const strip = colors.map((color) =>
-    `<td width="12" height="4" bgcolor="${color}" style="width:12px;height:4px;background-color:${color};font-size:1px;line-height:4px;">&nbsp;</td>`
-  ).join('<td width="3" style="width:3px;font-size:1px;">&nbsp;</td>');
+    `<td width="12" height="4" bgcolor="${color}" style="width:12px;height:4px;background-color:${color};font-size:0;line-height:4px;mso-line-height-rule:exactly;">&nbsp;</td>`
+  ).join('<td width="3" style="width:3px;font-size:0;line-height:4px;mso-line-height-rule:exactly;">&nbsp;</td>');
   const linkStyle = "color:#1c5297;text-decoration:underline;";
   const socials = socialLinks.map(([label, href]) =>
     `<a href="${href}" style="${linkStyle}font-weight:bold;">${label}</a>`
