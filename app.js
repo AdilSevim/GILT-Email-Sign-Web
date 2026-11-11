@@ -4,8 +4,28 @@ const form = document.querySelector("#signature-form");
 const preview = document.querySelector("#preview");
 const status = document.querySelector("#status");
 const fields = form.elements;
-const teamName = "Girişimci İnovatif Liderler Takımı";
-const university = "Kadir Has Üniversitesi";
+const signatureLabels = {
+  tr: {
+    teamName: "Girişimci İnovatif Liderler Takımı",
+    university: "Kadir Has Üniversitesi",
+    name: "Ad Soyad",
+    role: "Kulüpteki görevin",
+    roleExample: "Örn. Sponsorluk İlişkileri Ekip Lideri",
+    teamExample: "Örn. Sponsorluk İlişkileri",
+    title: "GİLT e-posta imzası",
+    files: { club: "gilt-kulup-imzasi", member: "gilt-bireysel-imza" },
+  },
+  en: {
+    teamName: "Entrepreneurial and Innovative Leaders Team",
+    university: "Kadir Has University",
+    name: "Full Name",
+    role: "Your role in the club",
+    roleExample: "e.g. Sponsorship Team Lead",
+    teamExample: "e.g. Sponsorship Relations",
+    title: "GİLT email signature",
+    files: { club: "gilt-club-signature", member: "gilt-member-signature" },
+  },
+};
 const assetBase = "https://adilsevim.github.io/GILT-Email-Sign-Web/assets/";
 const socialLinks = [
   ["LinkedIn", "https://tr.linkedin.com/company/khasgilt"],
@@ -20,22 +40,27 @@ function escapeHTML(value) {
 
 function signatureData() {
   const isClub = fields.type.value === "club";
-  const name = isClub ? teamName : fields.fullName.value.trim();
+  const language = fields.signatureLanguage.value;
+  const labels = signatureLabels[language];
+  const name = isClub ? labels.teamName : fields.fullName.value.trim();
   const role = (isClub ? fields.team : fields.role).value.trim();
   const emailField = isClub ? fields.clubEmail : fields.memberEmail;
   const phoneField = isClub ? fields.clubPhone : fields.memberPhone;
 
   return {
     isClub,
+    language,
+    labels,
     logoStyle: fields.logoStyle.value,
-    name: name || "Ad Soyad",
-    role: role || (isClub ? "" : "Kulüpteki görevin"),
+    name: name || labels.name,
+    role: role || (isClub ? "" : labels.role),
     email: emailField.validity.valid ? emailField.value.trim() : "",
     phone: phoneField.validity.valid ? phoneField.value.trim() : "",
   };
 }
 
-function renderSignature({ isClub, logoStyle, name, role, email, phone }) {
+function renderSignature({ isClub, language, labels, logoStyle, name, role, email, phone }) {
+  const { teamName, university } = labels;
   const colors = ["#2167b1", "#18a77b", "#e74a88", "#f49c30"];
   const strip = colors.map((color) =>
     `<td width="12" height="4" bgcolor="${color}" style="width:12px;height:4px;background-color:${color};font-size:0;line-height:4px;mso-line-height-rule:exactly;">&nbsp;</td>`
@@ -49,9 +74,9 @@ function renderSignature({ isClub, logoStyle, name, role, email, phone }) {
     phone && `<a href="tel:${phone.replace(/[^+0-9]/g, "")}" style="${linkStyle}">${escapeHTML(phone)}</a>`,
   ].filter(Boolean).map((link) => `<div style="overflow-wrap:anywhere;">${link}</div>`).join("");
 
-  return `<table role="presentation" cellpadding="0" cellspacing="0" border="0" style="border-collapse:collapse;font-family:Arial,Helvetica,sans-serif;font-size:12px;line-height:17px;color:#172a44;">
+  return `<table role="presentation" lang="${language}" cellpadding="0" cellspacing="0" border="0" style="border-collapse:collapse;font-family:Arial,Helvetica,sans-serif;font-size:12px;line-height:17px;color:#172a44;">
   <tr>
-    <td valign="top" style="vertical-align:top;padding:2px 12px 0 0;border-right:1px solid #cbd8e7;">
+    <td valign="middle" style="vertical-align:middle;padding:0 12px 0 0;border-right:1px solid #cbd8e7;">
       ${logoStyle === "wordmark"
         ? `<img src="${assetBase}gilt-wordmark.png" width="72" height="60" alt="GİLT" style="display:block;width:72px;height:60px;border:0;">`
         : `${logoStyle === "puzzle" ? `<img src="${assetBase}gilt-puzzle.png" width="42" height="42" alt="" style="display:block;width:42px;height:42px;border:0;margin:0 auto 4px;">` : ""}
@@ -81,7 +106,10 @@ function refreshPreview() {
 
   document.querySelector("#club-fields").hidden = !isClub;
   fields.team.disabled = !isClub;
-  preview.innerHTML = renderSignature(signatureData());
+  const data = signatureData();
+  fields.role.placeholder = data.labels.roleExample;
+  fields.team.placeholder = data.labels.teamExample;
+  preview.innerHTML = renderSignature(data);
   status.textContent = "";
 }
 
@@ -111,7 +139,7 @@ async function copySignature() {
   const data = signatureData();
   const html = renderSignature(data);
   const plain = [
-    data.name, data.role, data.isClub ? "" : teamName, university, data.email, data.phone,
+    data.name, data.role, data.isClub ? "" : data.labels.teamName, data.labels.university, data.email, data.phone,
     ...socialLinks.map(([label, url]) => `${label} — ${url}`),
   ].filter(Boolean).join("\n");
 
@@ -135,11 +163,11 @@ async function copySignature() {
 function downloadSignature() {
   if (!validate()) return;
   const data = signatureData();
-  const html = `<!doctype html><html lang="tr"><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>GİLT e-posta imzası</title><body>${renderSignature(data)}</body></html>`;
+  const html = `<!doctype html><html lang="${data.language}"><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>${data.labels.title}</title><body>${renderSignature(data)}</body></html>`;
   const url = URL.createObjectURL(new Blob([html], { type: "text/html;charset=utf-8" }));
   const link = document.createElement("a");
   link.href = url;
-  link.download = data.isClub ? "gilt-kulup-imzasi.html" : "gilt-bireysel-imza.html";
+  link.download = `${data.labels.files[data.isClub ? "club" : "member"]}.html`;
   document.body.append(link);
   link.click();
   link.remove();
@@ -152,6 +180,7 @@ form.addEventListener("input", (event) => {
   event.target.setCustomValidity?.("");
   refreshPreview();
 });
+fields.signatureLanguage.addEventListener("change", refreshPreview);
 for (const option of fields.logoStyle) {
   option.addEventListener("input", refreshPreview);
 }

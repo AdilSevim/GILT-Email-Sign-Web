@@ -89,5 +89,23 @@ fieldset { border: 0; margin: 0; padding: 0; min-width: 0; }
   grid-template-columns: repeat(3, minmax(0, 1fr));
   margin: 14px 0 0;
 }
-.logo-options + .canvas { margin-top: 12px; }
+.signature-language {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-top: 12px;
+  font-size: 13px;
+  font-weight: 650;
+}
+.signature-language select {
+  font: inherit;
+  min-height: 36px;
+  padding: 5px 9px;
+  color: var(--ink);
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+}
+.signature-language + .canvas { margin-top: 12px; }
 #status:empty { margin: 0; }

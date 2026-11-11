@@ -6,8 +6,8 @@
   <meta name="description" content="GİLT kulüp ve üye e-posta imzalarını oluşturun, önizleyin ve kopyalayın.">
   <title>İmza Stüdyosu · GİLT</title>
   <link rel="icon" href="assets/gilt-puzzle.png">
-  <link rel="stylesheet" href="style.css?v=3">
-  <script src="app.js?v=3" defer></script>
+  <link rel="stylesheet" href="style.css?v=4">
+  <script src="app.js?v=4" defer></script>
 </head>
 <body>
   <header class="topbar">
@@ -59,6 +59,13 @@
           <label><input type="radio" form="signature-form" name="logoStyle" value="puzzle"><span>Yapboz logosu</span></label>
           <label><input type="radio" form="signature-form" name="logoStyle" value="wordmark"><span>Yazılı logo</span></label>
         </fieldset>
+        <div class="signature-language">
+          <label for="signature-language">İmza dili</label>
+          <select id="signature-language" name="signatureLanguage" form="signature-form">
+            <option value="tr">Türkçe</option>
+            <option value="en" lang="en">English</option>
+          </select>
+        </div>
         <div class="canvas"><div class="mail">
           <div class="mail-header"><span></span><span></span><span></span><strong>E-posta görünümü</strong></div>
           <div id="preview" aria-label="E-posta imzası önizlemesi"></div>
