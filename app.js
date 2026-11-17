@@ -28,10 +28,11 @@ const signatureLabels = {
 };
 // Recipients and downloaded signatures need the publicly hosted image.
 const wordmarkURL = "https://adilsevim.github.io/GILT-Email-Sign-Web/assets/gilt-color-wordmark.png";
-const clubEmail = document.querySelector("[data-club-email]").textContent.trim();
-const socialLinks = Array.from(document.querySelectorAll("[data-signature-channel]"), (link) =>
-  [link.textContent.trim(), link.href]
-);
+const socialLinks = [
+  ["LinkedIn", "https://tr.linkedin.com/company/khasgilt"],
+  ["Instagram", "https://www.instagram.com/khasgilt/"],
+  ["TikTok", "https://www.tiktok.com/@khas.gilt"],
+];
 
 function escapeHTML(value) {
   const entities = { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" };
@@ -46,7 +47,6 @@ function signatureData() {
   const role = (isClub ? fields.team : fields.role).value.trim();
   const emailField = isClub ? fields.clubEmail : fields.memberEmail;
   const phoneField = isClub ? fields.clubPhone : fields.memberPhone;
-  const email = emailField.validity.valid ? emailField.value.trim() : "";
 
   return {
     isClub,
@@ -54,40 +54,33 @@ function signatureData() {
     labels,
     name: name || labels.name,
     role: role || (isClub ? "" : labels.role),
-    emails: email && email.toLowerCase() !== clubEmail ? [email, clubEmail] : [clubEmail],
+    email: emailField.validity.valid ? emailField.value.trim() : "",
     phone: phoneField.validity.valid ? phoneField.value.trim() : "",
   };
 }
 
-function renderSignature({ isClub, language, labels, name, role, emails, phone }) {
+function renderSignature({ isClub, language, labels, name, role, email, phone }) {
   const { teamName, university } = labels;
   const linkStyle = "color:#1c5297;text-decoration:underline;";
   const socials = socialLinks.map(([label, href]) =>
-    `<a href="${escapeHTML(href)}" style="${linkStyle}font-weight:bold;white-space:nowrap;">${escapeHTML(label)}</a>`
-  ).join(' <span aria-hidden="true" style="color:#78869a;">·</span> ');
+    `<a href="${href}" style="${linkStyle}font-weight:bold;">${label}</a>`
+  ).join(' <span style="color:#78869a;">·</span> ');
   const contacts = [
-    ...emails.map((email) =>
-      `<a href="mailto:${escapeHTML(encodeURIComponent(email).replace(/%40/g, "@"))}" style="${linkStyle}">${escapeHTML(email)}</a>`
-    ),
+    email && `<a href="mailto:${escapeHTML(encodeURIComponent(email).replace(/%40/g, "@"))}" style="${linkStyle}">${escapeHTML(email)}</a>`,
     phone && `<a href="tel:${phone.replace(/[^+0-9]/g, "")}" style="${linkStyle}">${escapeHTML(phone)}</a>`,
-  ].filter(Boolean).map((link) => `<div style="word-wrap:break-word;overflow-wrap:anywhere;">${link}</div>`).join("");
+  ].filter(Boolean).map((link) => `<div style="overflow-wrap:anywhere;">${link}</div>`).join("");
 
-  return `<table role="presentation" lang="${language}" cellpadding="0" cellspacing="0" border="0" width="100%" style="width:100%;max-width:440px;border-collapse:collapse;font-family:Arial,Helvetica,sans-serif;font-size:12px;line-height:17px;color:#172a44;">
+  return `<table role="presentation" lang="${language}" cellpadding="0" cellspacing="0" border="0" style="border-collapse:collapse;font-family:Arial,Helvetica,sans-serif;font-size:12px;line-height:17px;color:#172a44;">
   <tr>
-    <td width="78" valign="middle" style="width:78px;vertical-align:middle;padding:0 12px 0 0;border-right:1px solid #cbd8e7;">
-      <img src="${wordmarkURL}" width="66" height="56" alt="GİLT" style="display:block;width:66px;height:56px;border:0;font-size:16px;font-weight:bold;">
+    <td valign="middle" style="vertical-align:middle;padding:0 12px 0 0;border-right:1px solid #cbd8e7;">
+      <img src="${wordmarkURL}" width="72" height="61" alt="GİLT" style="display:block;width:72px;height:61px;border:0;">
     </td>
-    <td valign="middle" style="vertical-align:middle;padding:0 0 0 12px;word-wrap:break-word;overflow-wrap:anywhere;">
+    <td valign="top" style="vertical-align:top;padding:0 0 0 12px;overflow-wrap:anywhere;">
       <div style="font-size:17px;line-height:21px;font-weight:bold;">${escapeHTML(name)}</div>
       ${role ? `<div style="padding-top:3px;color:#1c5297;font-weight:bold;">${escapeHTML(role)}</div>` : ""}
       <div style="padding-top:4px;color:#53647b;">${isClub ? university : `${teamName}<br>${university}`}</div>
-    </td>
-  </tr>
-  <tr><td colspan="2" height="9" style="height:9px;font-size:0;line-height:9px;">&nbsp;</td></tr>
-  <tr>
-    <td colspan="2" style="padding-top:8px;border-top:1px solid #cbd8e7;">
-      ${contacts}
-      <div style="padding-top:4px;line-height:19px;">${socials}</div>
+      ${contacts ? `<div style="padding-top:5px;">${contacts}</div>` : ""}
+      <div style="padding-top:7px;line-height:19px;">${socials}</div>
     </td>
   </tr>
 </table>`;
@@ -138,7 +131,7 @@ async function copySignature() {
   const data = signatureData();
   const html = renderSignature(data);
   const plain = [
-    data.name, data.role, data.isClub ? "" : data.labels.teamName, data.labels.university, ...data.emails, data.phone,
+    data.name, data.role, data.isClub ? "" : data.labels.teamName, data.labels.university, data.email, data.phone,
     ...socialLinks.map(([label, url]) => `${label} — ${url}`),
   ].filter(Boolean).join("\n");
 
