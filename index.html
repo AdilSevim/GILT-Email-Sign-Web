@@ -5,15 +5,15 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="GİLT kulüp ve üye e-posta imzalarını oluşturun, önizleyin ve kopyalayın.">
   <title>İmza Stüdyosu · GİLT</title>
-  <link rel="icon" href="assets/gilt-puzzle.png">
-  <link rel="stylesheet" href="style.css?v=4">
-  <script src="app.js?v=5" defer></script>
+  <link rel="icon" href="assets/gilt-color-wordmark.png">
+  <link rel="stylesheet" href="style.css?v=7">
+  <script src="app.js?v=7" defer></script>
 </head>
 <body>
   <header class="topbar">
     <div class="shell topbar-inner">
-      <a class="brand" href="./"><img src="assets/gilt-puzzle.png" alt="" width="34" height="34"><strong>GİLT</strong><span>İmza Stüdyosu</span></a>
-      <a class="guide-link" href="kilavuz.html">Kurulum kılavuzu</a>
+      <a class="brand" href="./"><img src="assets/gilt-color-wordmark.png" alt="GİLT" width="50" height="43"><span>İmza Stüdyosu</span></a>
+      <a class="guide-link" href="kilavuz.html">Kullanım kılavuzu</a>
     </div>
   </header>
   <main class="shell">
@@ -44,7 +44,7 @@
             </fieldset>
             <fieldset id="club-contact-fields" class="fields" hidden disabled>
               <legend class="sr-only">Kulüp iletişim bilgileri</legend>
-              <label>Kulüp e-postası <span class="optional">İsteğe bağlı</span><input type="email" name="clubEmail" maxlength="120" placeholder="kulup@ornek.com"></label>
+              <label>Kulüp e-postası <span class="optional">İsteğe bağlı</span><input type="email" name="clubEmail" maxlength="120" placeholder="Ekip e-posta adresi"></label>
               <label>Kulüp telefonu <span class="optional">İsteğe bağlı</span><input type="tel" name="clubPhone" maxlength="26" pattern="\+?[0-9\s\(\).\-]{7,25}" title="Alan koduyla birlikte telefon numarası girin." placeholder="+90 5XX XXX XX XX"></label>
             </fieldset>
           </div>
@@ -53,12 +53,6 @@
       </section>
       <section class="panel result" aria-labelledby="preview-title">
         <header class="preview-header"><h2 id="preview-title">Önizleme</h2><span class="live"><i></i> Canlı</span></header>
-        <fieldset class="switch logo-options">
-          <legend class="sr-only">İmza görünümü</legend>
-          <label><input type="radio" form="signature-form" name="logoStyle" value="plain" checked><span>Sade</span></label>
-          <label><input type="radio" form="signature-form" name="logoStyle" value="puzzle"><span>Yapboz logosu</span></label>
-          <label><input type="radio" form="signature-form" name="logoStyle" value="wordmark"><span>Yazılı logo</span></label>
-        </fieldset>
         <div class="signature-language">
           <label for="signature-language">İmza dili</label>
           <select id="signature-language" name="signatureLanguage" form="signature-form">
@@ -66,6 +60,10 @@
             <option value="en" lang="en">English</option>
           </select>
         </div>
+        <label class="social-option">
+          <input type="checkbox" name="includeSocials" form="signature-form">
+          <span>Kulübün sosyal medya bağlantılarını ekle</span>
+        </label>
         <div class="canvas"><div class="mail">
           <div class="mail-header"><span></span><span></span><span></span><strong>E-posta görünümü</strong></div>
           <div id="preview" aria-label="E-posta imzası önizlemesi"></div>
@@ -79,6 +77,26 @@
     </div>
     <noscript>İmza oluşturmak için tarayıcında JavaScript’i etkinleştir.</noscript>
   </main>
-  <footer class="shell footer"><span>Girişimci İnovatif Liderler Takımı · Kadir Has Üniversitesi</span><a href="https://www.instagram.com/khasgilt/">@khasgilt</a></footer>
+  <footer class="shell footer" id="iletisim">
+    <div class="footer-identity">
+      <strong>Girişimci İnovatif Liderler Takımı</strong>
+      <span>Kadir Has Üniversitesi · Cibali Kampüsü, İstanbul</span>
+    </div>
+    <div>
+      <h2>GİLT iletişim</h2>
+      <a data-club-email href="mailto:gilt.akademi@gmail.com">gilt.akademi@gmail.com</a>
+      <span class="university-phone">KHAS Öğrenci Dekanlığı <a href="tel:+902125336532">+90 212 533 65 32</a></span>
+    </div>
+    <nav aria-label="GİLT sosyal medya hesapları">
+      <h2>Sosyal medya</h2>
+      <ul class="social-links">
+        <li><a data-signature-channel href="https://www.instagram.com/khasgilt/">Instagram</a></li>
+        <li><a data-signature-channel href="https://www.linkedin.com/company/khasgilt">LinkedIn</a></li>
+        <li><a data-signature-channel href="https://www.tiktok.com/@khas.gilt">TikTok</a></li>
+        <li><a data-signature-channel href="https://www.facebook.com/khasgilt">Facebook</a></li>
+        <li><a data-signature-channel href="https://linktr.ee/khas_gilt">Linktree</a></li>
+      </ul>
+    </nav>
+  </footer>
 </body>
 </html>
