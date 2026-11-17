@@ -135,7 +135,5 @@ fieldset { border: 0; margin: 0; padding: 0; min-width: 0; }
   border: 1px solid var(--line);
   border-radius: 8px;
 }
-.social-option { display: flex; align-items: center; gap: 8px; min-height: 44px; color: var(--muted); font-size: 13px; cursor: pointer; }
-.social-option input { width: 16px; height: 16px; margin: 0; accent-color: var(--blue); flex: none; }
-.social-option + .canvas { margin-top: 4px; }
+.signature-language + .canvas { margin-top: 12px; }
 #status:empty { margin: 0; }

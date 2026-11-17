@@ -7,7 +7,7 @@ GİLT üyeleri için bireysel ve kulüp e-posta imzası oluşturucusu. Statik HT
 - `app.js` e-posta için satır içi stillerle imza üretimi, kopyalama ve HTML indirme
 - `style.css` stüdyo ve kılavuz stilleri
 
-İki imza türü de özgün GİLT yazılı logosunu kullanır. Varsayılan imza, girilen iletişim bilgilerini içerir. Sosyal medya kutusu seçildiğinde imzaya `index.html` dosyasındaki iletişim bölümünden kulüp e-postası ve sosyal bağlantılar eklenir. [Kulüp e-postası](https://www.khas.edu.tr/ogrenci-kulupleri/), [sosyal hesaplar](https://linktr.ee/khas_gilt) ve [Öğrenci Dekanlığı telefonu](https://www.khas.edu.tr/odek/) ilgili kurum sayfalarında listelenir.
+İki imza türü de özgün GİLT yazılı logosunu kullanır. İmzalardaki ortak e-posta ve sosyal bağlantılar, `index.html` dosyasının altındaki iletişim bölümünden alınır. [Kulüp e-postası](https://www.khas.edu.tr/ogrenci-kulupleri/), [sosyal hesaplar](https://linktr.ee/khas_gilt) ve [Öğrenci Dekanlığı telefonu](https://www.khas.edu.tr/odek/) ilgili kurum sayfalarında listelenir.
 
 ## Yerel önizleme
 

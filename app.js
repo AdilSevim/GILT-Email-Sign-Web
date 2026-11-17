@@ -47,9 +47,6 @@ function signatureData() {
   const emailField = isClub ? fields.clubEmail : fields.memberEmail;
   const phoneField = isClub ? fields.clubPhone : fields.memberPhone;
   const email = emailField.validity.valid ? emailField.value.trim() : "";
-  const includeSocials = fields.includeSocials.checked;
-  const emails = email ? [email] : [];
-  if (includeSocials && email.toLowerCase() !== clubEmail) emails.push(clubEmail);
 
   return {
     isClub,
@@ -57,16 +54,15 @@ function signatureData() {
     labels,
     name: name || labels.name,
     role: role || (isClub ? "" : labels.role),
-    emails,
+    emails: email && email.toLowerCase() !== clubEmail ? [email, clubEmail] : [clubEmail],
     phone: phoneField.validity.valid ? phoneField.value.trim() : "",
-    channels: includeSocials ? socialLinks : [],
   };
 }
 
-function renderSignature({ isClub, language, labels, name, role, emails, phone, channels }) {
+function renderSignature({ isClub, language, labels, name, role, emails, phone }) {
   const { teamName, university } = labels;
   const linkStyle = "color:#1c5297;text-decoration:underline;";
-  const socials = channels.map(([label, href]) =>
+  const socials = socialLinks.map(([label, href]) =>
     `<a href="${escapeHTML(href)}" style="${linkStyle}font-weight:bold;white-space:nowrap;">${escapeHTML(label)}</a>`
   ).join(' <span aria-hidden="true" style="color:#78869a;">·</span> ');
   const contacts = [
@@ -87,13 +83,13 @@ function renderSignature({ isClub, language, labels, name, role, emails, phone, 
       <div style="padding-top:4px;color:#53647b;">${isClub ? university : `${teamName}<br>${university}`}</div>
     </td>
   </tr>
-  ${contacts || socials ? `<tr><td colspan="2" height="9" style="height:9px;font-size:0;line-height:9px;">&nbsp;</td></tr>
+  <tr><td colspan="2" height="9" style="height:9px;font-size:0;line-height:9px;">&nbsp;</td></tr>
   <tr>
     <td colspan="2" style="padding-top:8px;border-top:1px solid #cbd8e7;">
       ${contacts}
-      ${socials ? `<div style="padding-top:4px;line-height:19px;">${socials}</div>` : ""}
+      <div style="padding-top:4px;line-height:19px;">${socials}</div>
     </td>
-  </tr>` : ""}
+  </tr>
 </table>`;
 }
 
@@ -143,7 +139,7 @@ async function copySignature() {
   const html = renderSignature(data);
   const plain = [
     data.name, data.role, data.isClub ? "" : data.labels.teamName, data.labels.university, ...data.emails, data.phone,
-    ...data.channels.map(([label, url]) => `${label} — ${url}`),
+    ...socialLinks.map(([label, url]) => `${label} — ${url}`),
   ].filter(Boolean).join("\n");
 
   try {
@@ -184,7 +180,6 @@ form.addEventListener("input", (event) => {
   refreshPreview();
 });
 fields.signatureLanguage.addEventListener("change", refreshPreview);
-fields.includeSocials.addEventListener("change", refreshPreview);
 document.querySelector("#copy").addEventListener("click", copySignature);
 document.querySelector("#download").addEventListener("click", downloadSignature);
 refreshPreview();
