@@ -4,6 +4,30 @@ const form = document.querySelector("#signature-form");
 const preview = document.querySelector("#preview");
 const status = document.querySelector("#status");
 const fields = form.elements;
+let signatureLanguageChosen = false;
+const studioMessages = {
+  tr: {
+    required: "Bu alanı doldur.",
+    email: "Geçerli bir e-posta adresi gir.",
+    phone: "Alan koduyla birlikte 7–15 rakam içeren bir telefon numarası gir.",
+    copied: "İmza kopyalandı. E-posta ayarlarında biçimlendirmeyi koruyarak yapıştır.",
+    selected: "İmza seçildi. Ctrl+C veya ⌘C ile kopyala. Telefonda seçili alana basılı tutup Kopyala’yı seç.",
+    downloaded: "HTML dosyası hazır. Tarayıcıda açıp ekranda görünen imzayı kopyalayabilirsin.",
+  },
+  en: {
+    required: "Fill in this field.",
+    email: "Enter a valid email address.",
+    phone: "Enter a phone number with 7–15 digits, including the area code.",
+    copied: "Signature copied. Paste it into your email settings with formatting.",
+    selected: "Signature selected. Press Ctrl+C or ⌘C to copy. On a phone, touch and hold the selection, then choose Copy.",
+    downloaded: "Your HTML file is ready. Open it in a browser and copy the signature you see.",
+  },
+};
+
+function studioMessage(key) {
+  return studioMessages[document.documentElement.lang][key];
+}
+
 const signatureLabels = {
   tr: {
     teamName: "Girişimci İnovatif Liderler Takımı",
@@ -107,12 +131,15 @@ function refreshPreview() {
 
 function validate() {
   for (const field of [fields.fullName, fields.role]) {
-    field.setCustomValidity(field.disabled || field.value.trim() ? "" : "Bu alanı doldur.");
+    field.setCustomValidity(field.value.trim() ? "" : studioMessage("required"));
+  }
+  for (const field of [fields.memberEmail, fields.clubEmail]) {
+    field.setCustomValidity(field.validity.typeMismatch ? studioMessage("email") : "");
   }
   for (const field of [fields.memberPhone, fields.clubPhone]) {
     const digitCount = field.value.replace(/\D/g, "").length;
-    const valid = !field.value || (digitCount >= 7 && digitCount <= 15);
-    field.setCustomValidity(field.disabled || valid ? "" : "7–15 rakam içeren bir telefon numarası gir.");
+    const valid = !field.value || (!field.validity.patternMismatch && digitCount >= 7 && digitCount <= 15);
+    field.setCustomValidity(valid ? "" : studioMessage("phone"));
   }
   return form.reportValidity();
 }
@@ -140,14 +167,14 @@ async function copySignature() {
       "text/html": new Blob([html], { type: "text/html" }),
       "text/plain": new Blob([plain], { type: "text/plain" }),
     })]);
-    status.textContent = "İmza kopyalandı. E-posta ayarlarında biçimlendirmeyi koruyarak yapıştır.";
+    status.textContent = studioMessage("copied");
   } catch {
     const selection = selectPreview();
     if (document.execCommand("copy")) {
       selection.removeAllRanges();
-      status.textContent = "İmza kopyalandı. E-posta ayarlarında biçimlendirmeyi koruyarak yapıştır.";
+      status.textContent = studioMessage("copied");
     } else {
-      status.textContent = "İmza seçildi. Ctrl+C veya ⌘C ile kopyala. Telefonda seçili alana basılı tutup Kopyala’yı seç.";
+      status.textContent = studioMessage("selected");
     }
   }
 }
@@ -164,7 +191,7 @@ function downloadSignature() {
   link.click();
   link.remove();
   setTimeout(() => URL.revokeObjectURL(url), 1000);
-  status.textContent = "HTML dosyası hazır. Tarayıcıda açıp ekranda görünen imzayı kopyalayabilirsin.";
+  status.textContent = studioMessage("downloaded");
 }
 
 form.addEventListener("submit", (event) => event.preventDefault());
@@ -172,7 +199,16 @@ form.addEventListener("input", (event) => {
   event.target.setCustomValidity?.("");
   refreshPreview();
 });
-fields.signatureLanguage.addEventListener("change", refreshPreview);
+fields.signatureLanguage.addEventListener("change", () => {
+  signatureLanguageChosen = true;
+  refreshPreview();
+});
+function syncSignatureLanguage() {
+  if (!signatureLanguageChosen) fields.signatureLanguage.value = document.documentElement.lang;
+  refreshPreview();
+}
+
+document.addEventListener("sitelanguagechange", syncSignatureLanguage);
 document.querySelector("#copy").addEventListener("click", copySignature);
 document.querySelector("#download").addEventListener("click", downloadSignature);
-refreshPreview();
+syncSignatureLanguage();

@@ -3,90 +3,97 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="GİLT imzanı oluşturmayı ve Gmail ya da Outlook’a eklemeyi ekran görüntüleriyle öğren.">
-  <title>E-posta imzası kullanım kılavuzu · GİLT</title>
+  <meta name="description" content="GİLT imzanı oluşturmayı ve Gmail ya da Outlook’a eklemeyi ekran görüntüleriyle öğren." data-en-content="Learn how to create your GİLT signature and add it to Gmail or Outlook, with screenshots.">
+  <title data-en="Email Signature Setup Guide · GİLT">E-posta imzası kullanım kılavuzu · GİLT</title>
   <link rel="icon" href="assets/gilt-color-wordmark.png">
-  <link rel="stylesheet" href="style.css?v=8">
+  <link rel="stylesheet" href="style.css?v=10">
+  <script src="language.js?v=10" defer></script>
 </head>
 <body>
   <header class="topbar"><div class="shell topbar-inner">
-    <a class="brand" href="./"><img src="assets/gilt-color-wordmark.png" alt="GİLT" width="50" height="43"><span>İmza Stüdyosu</span></a>
-    <a class="guide-link" href="./">← Stüdyoya dön</a>
+    <a class="brand" href="./" data-localized-link><img src="assets/gilt-color-wordmark.png" alt="GİLT" width="50" height="43"><span data-en="Signature Studio">İmza Stüdyosu</span></a>
+    <div class="header-actions">
+      <a class="guide-link" data-localized-link href="./" data-en="← Back to Studio">← Stüdyoya dön</a>
+      <div class="site-language" role="group" aria-label="Arayüz dili" data-en-aria-label="Interface language" hidden>
+        <button type="button" value="tr" lang="tr" aria-label="Türkçe" aria-pressed="true">TR</button>
+        <button type="button" value="en" lang="en" aria-label="English" aria-pressed="false">EN</button>
+      </div>
+    </div>
   </div></header>
   <main class="shell guide">
     <section class="intro">
-      <h1>İmzanı e-postana ekle<span>.</span></h1>
-      <p>Stüdyoda imzanı hazırla, Gmail veya Outlook’a ekle ve kendine bir deneme e-postası gönder.</p>
+      <h1><span data-en="Add your email signature">İmzanı e-postana ekle</span><span>.</span></h1>
+      <p data-en="Create your signature in the Studio, add it to Gmail or Outlook, and send yourself a test email.">Stüdyoda imzanı hazırla, Gmail veya Outlook’a ekle ve kendine bir deneme e-postası gönder.</p>
     </section>
-    <nav class="guide-nav" aria-label="Kılavuz bölümleri">
-      <a href="#hazirla">İmzanı hazırla</a>
+    <nav class="guide-nav" aria-label="Kılavuz bölümleri" data-en-aria-label="Guide sections">
+      <a href="#hazirla" data-en="Create your signature">İmzanı hazırla</a>
       <a href="#gmail">Gmail</a>
       <a href="#outlook">Outlook</a>
-      <a href="#kontrol">Son kontrol</a>
+      <a href="#kontrol" data-en="Final check">Son kontrol</a>
     </nav>
     <section class="panel" id="hazirla">
-      <h2>1. Stüdyoda imzanı hazırla</h2>
+      <h2 data-en="1. Create your signature in the Studio">1. Stüdyoda imzanı hazırla</h2>
       <div class="guide-step">
         <div>
-          <h3>İmza türünü seç ve bilgilerini gir</h3>
-          <p>Kendi adına yazıyorsan <strong>Bireysel imza</strong> seçip adını ve görevini gir. Kulüp adına yazıyorsan <strong>Kulüp imzası</strong> seç ve gerekirse birim adını ekle. Ek e-posta ve telefon alanlarını ihtiyacına göre doldur.</p>
+          <h3 data-en="Choose a signature type and enter your details">İmza türünü seç ve bilgilerini gir</h3>
+          <p data-en-html="Choose &lt;strong&gt;Personal signature&lt;/strong&gt; when writing as yourself, then enter your name and role. Choose &lt;strong&gt;Club signature&lt;/strong&gt; when writing on behalf of the club and add your team if needed. Email and phone are optional.">Kendi adına yazıyorsan <strong>Bireysel imza</strong> seçip adını ve görevini gir. Kulüp adına yazıyorsan <strong>Kulüp imzası</strong> seç ve gerekirse birim adını ekle. Ek e-posta ve telefon alanlarını ihtiyacına göre doldur.</p>
         </div>
         <figure>
-          <img src="assets/kilavuz-form.webp" alt="Stüdyoda Bireysel imza seçili. Ad soyad ve kulüpteki görev alanları örnek bilgilerle doldurulmuş." width="447" height="518">
-          <figcaption>Stüdyo ekranı · Bireysel imza formu</figcaption>
+          <img src="assets/kilavuz-form.webp" alt="Stüdyoda Bireysel imza seçili. Ad soyad ve kulüpteki görev alanları örnek bilgilerle doldurulmuş." width="447" height="518" data-en-alt="The Studio with Personal signature selected and the name and role filled in with sample details." data-en-src="assets/guide-form-en.webp">
+          <figcaption data-en="Studio screenshot · Personal signature form">Stüdyo ekranı · Bireysel imza formu</figcaption>
         </figure>
       </div>
       <div class="guide-step">
         <div>
-          <h3>Önizlemeyi kontrol et ve kopyala</h3>
-          <p><strong>İmza dili</strong> menüsünden Türkçe veya English seç. Görev ya da birim adını seçtiğin dilde yaz. Önizlemeyi kontrol ettikten sonra <strong>İmzayı kopyala</strong>’ya bas.</p>
+          <h3 data-en="Review and copy your signature">Önizlemeyi kontrol et ve kopyala</h3>
+          <p data-en-html="Choose Turkish or English under &lt;strong&gt;Signature language&lt;/strong&gt;. Enter your role or team name in that language. Review the preview, then click &lt;strong&gt;Copy signature&lt;/strong&gt;."><strong>İmza dili</strong> menüsünden Türkçe veya English seç. Görev ya da birim adını seçtiğin dilde yaz. Önizlemeyi kontrol ettikten sonra <strong>İmzayı kopyala</strong>’ya bas.</p>
         </div>
         <figure>
-          <img src="assets/kilavuz-onizleme.webp?v=9" alt="GİLT yazılı logosunun, örnek imzanın ve İmzayı kopyala ile HTML indir düğmelerinin göründüğü önizleme paneli." width="644" height="482">
-          <figcaption>Stüdyo ekranı · Yazılı logolu imza ve kopyalama düğmesi</figcaption>
+          <img src="assets/kilavuz-onizleme.webp?v=9" alt="GİLT yazılı logosunun, örnek imzanın ve İmzayı kopyala ile HTML indir düğmelerinin göründüğü önizleme paneli." width="644" height="482" data-en-alt="The preview panel with a sample signature, the GİLT wordmark, and the Copy signature and Download HTML buttons." data-en-src="assets/guide-preview-en.webp">
+          <figcaption data-en="Studio screenshot · Signature preview and copy button">Stüdyo ekranı · Yazılı logolu imza ve kopyalama düğmesi</figcaption>
         </figure>
       </div>
       <details>
-        <summary>Kopyalama çalışmazsa</summary>
-        <p><strong>HTML indir</strong>’e bas. Dosyayı tarayıcıda aç ve görüntülenen imzayı seçip kopyala. Ardından e-posta ayarındaki imza alanına normal yapıştırma komutuyla ekle.</p>
+        <summary data-en="If copying does not work">Kopyalama çalışmazsa</summary>
+        <p data-en-html="Click &lt;strong&gt;Download HTML&lt;/strong&gt;. Open the file in your browser, select the signature you see, and copy it. Paste it into the signature field in your email settings using the regular paste command."><strong>HTML indir</strong>’e bas. Dosyayı tarayıcıda aç ve görüntülenen imzayı seçip kopyala. Ardından e-posta ayarındaki imza alanına normal yapıştırma komutuyla ekle.</p>
       </details>
-      <a class="primary studio-link" href="./">İmza Stüdyosu’nu aç</a>
+      <a class="primary studio-link" href="./" data-localized-link data-en="Open Signature Studio">İmza Stüdyosu’nu aç</a>
     </section>
     <section class="panel" id="gmail">
       <h2>2. Gmail · Web</h2>
-      <p class="settings-path"><span>Ayarlar</span><span aria-hidden="true">→</span><span>Tüm ayarları görüntüle</span><span aria-hidden="true">→</span><span>Genel</span><span aria-hidden="true">→</span><span>İmza</span></p>
+      <p class="settings-path"><span data-en="Settings">Ayarlar</span><span aria-hidden="true">→</span><span data-en="See all settings">Tüm ayarları görüntüle</span><span aria-hidden="true">→</span><span data-en="General">Genel</span><span aria-hidden="true">→</span><span data-en="Signature">İmza</span></p>
       <ol>
-        <li>Bilgisayarda Gmail’i aç ve yukarıdaki ayar yolunu izle. <strong>Yeni oluştur</strong>’a tıklayıp imzana ad ver.</li>
-        <li>İmza alanına <strong>Ctrl+V</strong> ya da <strong>⌘V</strong> ile yapıştır.</li>
-        <li><strong>İmza varsayılanları</strong> bölümünde yeni e-postalar ve yanıtlar/iletmeler için tercihini seç. Sayfanın altından <strong>Değişiklikleri kaydet</strong>’e tıkla.</li>
+        <li data-en-html="Open Gmail on a computer and follow the settings path above. Click &lt;strong&gt;Create new&lt;/strong&gt; and name your signature.">Bilgisayarda Gmail’i aç ve yukarıdaki ayar yolunu izle. <strong>Yeni oluştur</strong>’a tıklayıp imzana ad ver.</li>
+        <li data-en-html="Paste into the signature field with &lt;strong&gt;Ctrl+V&lt;/strong&gt; or &lt;strong&gt;⌘V&lt;/strong&gt;.">İmza alanına <strong>Ctrl+V</strong> ya da <strong>⌘V</strong> ile yapıştır.</li>
+        <li data-en-html="Under &lt;strong&gt;Signature defaults&lt;/strong&gt;, choose a signature for new emails and for replies and forwards. Click &lt;strong&gt;Save Changes&lt;/strong&gt; at the bottom of the page."><strong>İmza varsayılanları</strong> bölümünde yeni e-postalar ve yanıtlar/iletmeler için tercihini seç. Sayfanın altından <strong>Değişiklikleri kaydet</strong>’e tıkla.</li>
       </ol>
-      <p><a href="https://support.google.com/mail/answer/8395?hl=tr">Gmail Yardım’da imza ayarları ↗</a></p>
+      <p><a href="https://support.google.com/mail/answer/8395?hl=tr" data-en="Signature settings in Gmail Help ↗" data-en-href="https://support.google.com/mail/answer/8395?hl=en">Gmail Yardım’da imza ayarları ↗</a></p>
     </section>
     <section class="panel" id="outlook">
-      <h2>Outlook · Web ve yeni Outlook</h2>
-      <p class="settings-path"><span>Ayarlar</span><span aria-hidden="true">→</span><span>Hesaplar</span><span aria-hidden="true">→</span><span>İmzalar</span></p>
+      <h2 data-en="Outlook · Web and new Outlook">Outlook · Web ve yeni Outlook</h2>
+      <p class="settings-path"><span data-en="Settings">Ayarlar</span><span aria-hidden="true">→</span><span data-en="Accounts">Hesaplar</span><span aria-hidden="true">→</span><span data-en="Signatures">İmzalar</span></p>
       <ol>
-        <li>Yukarıdaki ayar yolunu izle. Birden fazla hesabın varsa imzayı kullanacağın hesabı seç.</li>
-        <li><strong>İmza ekle</strong>’ye tıkla, imzana ad ver ve kopyaladığın imzayı düzenleme alanına yapıştır.</li>
-        <li>Yeni e-postalar ve yanıtlar/iletmeler için tercihini seç. <strong>Kaydet</strong>’e tıkla.</li>
+        <li data-en-html="Follow the settings path above. If you have multiple accounts, choose the one that will use this signature.">Yukarıdaki ayar yolunu izle. Birden fazla hesabın varsa imzayı kullanacağın hesabı seç.</li>
+        <li data-en-html="Click &lt;strong&gt;Add signature&lt;/strong&gt;, give it a name, and paste your copied signature into the editor."><strong>İmza ekle</strong>’ye tıkla, imzana ad ver ve kopyaladığın imzayı düzenleme alanına yapıştır.</li>
+        <li data-en-html="Choose whether to use it for new emails, replies, and forwards. Click &lt;strong&gt;Save&lt;/strong&gt;.">Yeni e-postalar ve yanıtlar/iletmeler için tercihini seç. <strong>Kaydet</strong>’e tıkla.</li>
       </ol>
       <details>
-        <summary>Klasik Outlook kullanıyorsan</summary>
-        <p>Yeni bir ileti aç. <strong>İleti → İmza → İmzalar</strong> yoluyla imzanı oluştur. Yapıştırdıktan sonra varsayılanlarını ayarla ve <strong>Tamam</strong>’a tıkla.</p>
+        <summary data-en="If you use classic Outlook">Klasik Outlook kullanıyorsan</summary>
+        <p data-en-html="Start a new message. Open &lt;strong&gt;Message → Signature → Signatures&lt;/strong&gt; and create a signature. Paste it, set your defaults, and click &lt;strong&gt;OK&lt;/strong&gt;.">Yeni bir ileti aç. <strong>İleti → İmza → İmzalar</strong> yoluyla imzanı oluştur. Yapıştırdıktan sonra varsayılanlarını ayarla ve <strong>Tamam</strong>’a tıkla.</p>
       </details>
-      <p><a href="https://support.microsoft.com/en-gb/outlook/mail/how-to-add-and-change-an-email-signature-in-outlook?nochrome=true">Microsoft Desteği’nde imza ayarları ↗</a></p>
+      <p><a href="https://support.microsoft.com/en-gb/outlook/mail/how-to-add-and-change-an-email-signature-in-outlook?nochrome=true" data-en="Signature settings in Microsoft Support ↗">Microsoft Desteği’nde imza ayarları ↗</a></p>
     </section>
     <section class="panel" id="kontrol">
-      <h2>3. Kendine deneme e-postası gönder</h2>
+      <h2 data-en="3. Send yourself a test email">3. Kendine deneme e-postası gönder</h2>
       <ol>
-        <li>Yeni bir e-posta aç ve imzanın otomatik olarak geldiğini kontrol et. Gerekirse yeni ileti için imza varsayılanını tekrar seç.</li>
-        <li>Kendine gönder. Gelen e-postayı telefonda ve bilgisayarda açıp logoyu, iletişim bilgilerini ve bağlantıları kontrol et.</li>
+        <li data-en="Start a new message and check that your signature appears. If needed, select it again as the default for new messages.">Yeni bir e-posta aç ve imzanın otomatik olarak geldiğini kontrol et. Gerekirse yeni ileti için imza varsayılanını tekrar seç.</li>
+        <li data-en="Send it to yourself. Open it on your phone and computer to check the logo, contact details, and links.">Kendine gönder. Gelen e-postayı telefonda ve bilgisayarda açıp logoyu, iletişim bilgilerini ve bağlantıları kontrol et.</li>
       </ol>
     </section>
   </main>
   <footer class="shell footer">
-    <div class="footer-identity"><strong>Girişimci İnovatif Liderler Takımı</strong><span>Kadir Has Üniversitesi</span></div>
-    <a href="./#iletisim">GİLT iletişim ve sosyal medya</a>
+    <div class="footer-identity"><strong data-en="Entrepreneurial and Innovative Leaders Team">Girişimci İnovatif Liderler Takımı</strong><span data-en="Kadir Has University">Kadir Has Üniversitesi</span></div>
+    <a href="./#iletisim" data-localized-link data-en="GİLT contact details and social media">GİLT iletişim ve sosyal medya</a>
   </footer>
 </body>
 </html>
