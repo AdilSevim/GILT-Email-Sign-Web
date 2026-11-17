@@ -65,9 +65,7 @@ fieldset { border: 0; margin: 0; padding: 0; min-width: 0; }
 .secondary:hover { background: #eef3fa; }
 .footer { display: grid; grid-template-columns: 1.15fr 1fr 1fr; gap: 24px; color: var(--muted); font-size: 13px; line-height: 1.55; border-top: 1px solid var(--line); margin-top: 44px; padding: 24px 0 30px; }
 .footer h2, .footer strong { display: block; margin-bottom: 5px; color: var(--ink); font-size: 14px; letter-spacing: 0; }
-.footer-identity span, .university-phone { display: block; }
-.university-phone { margin-top: 6px; }
-.university-phone a { display: inline-block; }
+.footer-identity span { display: block; }
 .footer a { text-decoration: none; }
 .social-links { display: flex; flex-wrap: wrap; gap: 3px 14px; margin: 0; padding: 0; list-style: none; }
 .social-links a { display: inline-block; padding: 5px 0; }

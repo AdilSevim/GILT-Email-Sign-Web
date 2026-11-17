@@ -10,7 +10,7 @@ GİLT üyeleri için bireysel ve kulüp e-posta imzası oluşturucusu. Statik HT
 
 Türkçe ve İngilizce arayüzler üst menüden seçilebilir. İngilizce sayfalar `?lang=en` ile doğrudan açılır. İmza dili başlangıçta arayüzü izler ve stüdyodan ayrıca seçilebilir.
 
-İki imza türü de özgün GİLT yazılı logosunu ve LinkedIn, Instagram, TikTok bağlantılarını kullanır. Kulübün genel iletişim bilgileri ve diğer sosyal hesapları stüdyonun alt bölümündedir. [Kulüp e-postası](https://www.khas.edu.tr/ogrenci-kulupleri/) · [Sosyal hesaplar](https://linktr.ee/khas_gilt) · [Öğrenci Dekanlığı telefonu](https://www.khas.edu.tr/odek/)
+İki imza türü de özgün GİLT yazılı logosunu ve LinkedIn, Instagram, TikTok bağlantılarını kullanır. Kulübün genel e-posta adresi ve diğer sosyal hesapları stüdyonun alt bölümündedir. [Kulüp e-postası](https://www.khas.edu.tr/ogrenci-kulupleri/) · [Sosyal hesaplar](https://linktr.ee/khas_gilt)
 
 ## Yerel önizleme
 
